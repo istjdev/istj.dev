@@ -4,7 +4,7 @@ title: "About"
 
 ### About
 
-Hello 👋 I’m Nguyên, a software engineer based in Vietnam.
+Hello 👋 I’m isfjdev — short for Nguyễn Minh Nguyên, a software engineer based in Vietnam.
 
 Working remotely full-time, I focus on Go and JavaScript to build reliable and pragmatic software solutions.
 

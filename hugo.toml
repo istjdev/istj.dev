@@ -6,7 +6,7 @@ relativeURLs = true
 enableEmoji = true
 googleAnalytics = ""
 enableRobotsTXT = true
-copyright = "&copy; Copyright 2025, isfjdev"
+copyright = "© 2025 by isfj.dev. All rights reserved."
 
 # Main menu items
 [menu]

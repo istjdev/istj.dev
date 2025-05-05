@@ -7,6 +7,14 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© 2025 by isfj.dev. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 29 Apr 2025 07:16:22 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Database</title>
+      <link>http://localhost:1313/categories/database/</link>
+      <pubDate>Tue, 29 Apr 2025 07:16:22 +0700</pubDate>
+      <guid>http://localhost:1313/categories/database/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

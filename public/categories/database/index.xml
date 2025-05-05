@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on isfj.dev</title>
+    <link>http://localhost:1313/categories/database/</link>
+    <description>Recent content in Database on isfj.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>© 2025 by isfj.dev. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 29 Apr 2025 07:16:22 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PostgreSQL Partitioning: Native vs Inheritance &#43; Trigger</title>
+      <link>http://localhost:1313/posts/postgresql-partitioning-native-vs-inheritance-trigger/</link>
+      <pubDate>Tue, 29 Apr 2025 07:16:22 +0700</pubDate>
+      <guid>http://localhost:1313/posts/postgresql-partitioning-native-vs-inheritance-trigger/</guid>
+      <description>&lt;h1 id=&#34;postgresql-partitioning-native-vs-inheritance--trigger--which-one-should-you-use&#34;&gt;PostgreSQL Partitioning: Native vs Inheritance + Trigger — Which One Should You Use?&lt;/h1&gt;&#xA;&lt;p&gt;Partitioning is a powerful technique in PostgreSQL to handle large-scale datasets. It can significantly improve &lt;strong&gt;query performance&lt;/strong&gt;, &lt;strong&gt;data maintenance&lt;/strong&gt;, and &lt;strong&gt;scalability&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;But which method should you choose: &lt;strong&gt;Native Partitioning&lt;/strong&gt; or the older &lt;strong&gt;Inheritance + Trigger&lt;/strong&gt; approach?&lt;/p&gt;&#xA;&lt;p&gt;This article dives into both techniques, comparing their mechanics, pros and cons, and real-world applicability to help you make an informed decision.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

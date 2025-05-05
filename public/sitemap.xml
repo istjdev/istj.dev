@@ -3,11 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-  </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/database/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/database/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/partitioning/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/postgresql/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/postgresql-partitioning-native-vs-inheritance-trigger/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-04-29T07:16:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
   </url>
 </urlset>

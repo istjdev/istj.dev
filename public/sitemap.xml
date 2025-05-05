@@ -2,33 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://isfj.dev/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://isfj.dev/categories/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/database/</loc>
+    <loc>https://isfj.dev/categories/database/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/database/</loc>
+    <loc>https://isfj.dev/tags/database/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/partitioning/</loc>
+    <loc>https://isfj.dev/tags/partitioning/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/postgresql/</loc>
+    <loc>https://isfj.dev/tags/postgresql/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/postgresql-partitioning-native-vs-inheritance-trigger/</loc>
+    <loc>https://isfj.dev/posts/postgresql-partitioning-native-vs-inheritance-trigger/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://isfj.dev/posts/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://isfj.dev/tags/</loc>
     <lastmod>2025-04-29T07:16:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://isfj.dev/about/</loc>
   </url>
 </urlset>

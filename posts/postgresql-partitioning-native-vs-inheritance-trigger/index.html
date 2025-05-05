@@ -1,286 +1,40 @@
-<!doctype html>
-<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <title>isfj.dev</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-
-    
-    
-    
-    <link rel="stylesheet" href="../../css/theme.min.css">
-
-    
-    
-    
-    
-    <link rel="stylesheet" href="../../css/custom.min.css">
-    
-
-    
-</head>
-<body>
-        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
-    <div class="row">
-        
-        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
-            <a href="../../" class="text-decoration-none">
-                <img id="home-image" class="rounded-circle"
-                    
-                        
-                            src="../../images/avatar.png"
-                        
-                    
-                />
-            </a>
-        </div>
-        <div class="col-sm-8 col-12 text-sm-left text-center">
-        
-            <h2 class="m-0 mb-2 mt-4">
-                <a href="../../" class="text-decoration-none">
-                    
-                        I’m isfjdev 👋
-                    
-                </a>
-            </h2>
-            <p class="text-muted mb-1">
-                
-                    Software Engineer | VN
-                
-            </p>
-            <ul id="nav-links" class="list-inline mb-2">
-                
-                
-                    <li class="list-inline-item">
-                        <a class="badge badge-white " href="../../about/" title="About">About</a>
-                    </li>
-                
-                    <li class="list-inline-item">
-                        <a class="badge badge-white " href="../../posts/" title="Posts">Posts</a>
-                    </li>
-                
-            </ul>
-            <ul id="nav-social" class="list-inline">
-                
-                    <li class="list-inline-item mr-3">
-                        <a href="http://github.com/isfjdev" target="_blank">
-                            <i class="fab fa-github fa-1x text-muted"></i>
-                        </a>
-                    </li>
-                
-                    <li class="list-inline-item mr-3">
-                        <a href="https://www.linkedin.com/in/isfjdev" target="_blank">
-                            <i class="fab fa-linkedin-in fa-1x text-muted"></i>
-                        </a>
-                    </li>
-                
-                    <li class="list-inline-item mr-3">
-                        <a href="https://x.com/isfjdev" target="_blank">
-                            <i class="fab fa-x-twitter fa-1x text-muted"></i>
-                        </a>
-                    </li>
-                
-                    <li class="list-inline-item mr-3">
-                        <a href="mailto:isfjdev@gmail.com" target="_blank">
-                            <i class="fas fa-envelope fa-1x text-muted"></i>
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-    <hr />
-</header>
-<div class="container">
-    <div class="pl-sm-2">
-        <div class="mb-3">
-            <h3 class="mb-0">PostgreSQL Partitioning: Native vs Inheritance &#43; Trigger</h3>
-            
-            <small class="text-muted">Published April 29, 2025</small>
-        </div>
-
-        <article>
-            <p>Partitioning is a powerful technique in PostgreSQL to handle large-scale datasets. It can significantly improve <strong>query performance</strong>, <strong>data maintenance</strong>, and <strong>scalability</strong>.</p>
-<p>But which method should you choose: <strong>Native Partitioning</strong> or the older <strong>Inheritance + Trigger</strong> approach?</p>
-<p>This article dives into both techniques, comparing their mechanics, pros and cons, and real-world applicability to help you make an informed decision.</p>
-<hr>
-<h2 id="what-is-partitioning-and-why-does-it-matter">What is partitioning and why does it matter?</h2>
-<p><strong>Partitioning</strong> is the process of splitting a large table into smaller, more manageable pieces called <em>partitions</em>. Benefits include:</p>
-<ul>
-<li>Faster queries due to reduced I/O.</li>
-<li>Simplified table management.</li>
-<li>Efficient archival or deletion of old data.</li>
-</ul>
-<blockquote>
-<p>Think of partitioning like organizing massive file cabinets by month — it&rsquo;s easier to locate and remove specific data chunks.</p></blockquote>
-<hr>
-<h2 id="historical-context-in-postgresql">Historical context in PostgreSQL</h2>
-<p>Partitioning in PostgreSQL has evolved over time:</p>
-<table>
-  <thead>
-      <tr>
-          <th>PostgreSQL Version</th>
-          <th>Partitioning Method</th>
-          <th>Notes</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>≤ 9.6</td>
-          <td>Inheritance + Trigger</td>
-          <td>Manual, flexible but complex</td>
-      </tr>
-      <tr>
-          <td>≥ 10</td>
-          <td>Native Partitioning (built-in)</td>
-          <td>Simple, efficient, and integrated</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h2 id="3-how-each-method-works">3. How each method works</h2>
-<h3 id="-inheritance--trigger">🛠 Inheritance + Trigger</h3>
-<p>This older method uses table inheritance and insert triggers.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
-</span></span><span style="display:flex;"><span>    id serial,
-</span></span><span style="display:flex;"><span>    log_time <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    log_message text
-</span></span><span style="display:flex;"><span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs_2024_01 () <span style="color:#66d9ef">INHERITS</span> (logs);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs_2024_02 () <span style="color:#66d9ef">INHERITS</span> (logs);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">FUNCTION</span> logs_insert_trigger()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">RETURNS</span> <span style="color:#66d9ef">TRIGGER</span> <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">$$</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">BEGIN</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">IF</span> (<span style="color:#66d9ef">NEW</span>.log_time <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;2024-01-01&#39;</span> <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">NEW</span>.log_time <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#39;2024-02-01&#39;</span>) <span style="color:#66d9ef">THEN</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> logs_2024_01 <span style="color:#66d9ef">VALUES</span> (<span style="color:#66d9ef">NEW</span>.<span style="color:#f92672">*</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">ELSIF</span> (<span style="color:#66d9ef">NEW</span>.log_time <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;2024-02-01&#39;</span> <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">NEW</span>.log_time <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#39;2024-03-01&#39;</span>) <span style="color:#66d9ef">THEN</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> logs_2024_02 <span style="color:#66d9ef">VALUES</span> (<span style="color:#66d9ef">NEW</span>.<span style="color:#f92672">*</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">ELSE</span>
-</span></span><span style="display:flex;"><span>        RAISE <span style="color:#66d9ef">EXCEPTION</span> <span style="color:#e6db74">&#39;Date out of range&#39;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">RETURN</span> <span style="color:#66d9ef">NULL</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">END</span>;
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$$</span> <span style="color:#66d9ef">LANGUAGE</span> plpgsql;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TRIGGER</span> insert_logs_trigger
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">BEFORE</span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">ON</span> logs
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">EACH</span> <span style="color:#66d9ef">ROW</span> <span style="color:#66d9ef">EXECUTE</span> <span style="color:#66d9ef">FUNCTION</span> logs_insert_trigger();
-</span></span></code></pre></div><p>✅ <strong>Explanation</strong>:</p>
-<ul>
-<li>The <code>logs</code> table is abstract and holds no data directly.</li>
-<li>The trigger checks <code>log_time</code> and routes the row to the correct child table.</li>
-</ul>
-<hr>
-<h3 id="-native-partitioning-postgresql--10">⚙ Native Partitioning (PostgreSQL ≥ 10)</h3>
-<p>Native partitioning simplifies the setup using built-in features.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
-</span></span><span style="display:flex;"><span>    id serial,
-</span></span><span style="display:flex;"><span>    log_time <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
-</span></span><span style="display:flex;"><span>    log_message text
-</span></span><span style="display:flex;"><span>) PARTITION <span style="color:#66d9ef">BY</span> RANGE (log_time);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs_2024_01 PARTITION <span style="color:#66d9ef">OF</span> logs
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">FROM</span> (<span style="color:#e6db74">&#39;2024-01-01&#39;</span>) <span style="color:#66d9ef">TO</span> (<span style="color:#e6db74">&#39;2024-02-01&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs_2024_02 PARTITION <span style="color:#66d9ef">OF</span> logs
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">VALUES</span> <span style="color:#66d9ef">FROM</span> (<span style="color:#e6db74">&#39;2024-02-01&#39;</span>) <span style="color:#66d9ef">TO</span> (<span style="color:#e6db74">&#39;2024-03-01&#39;</span>);
-</span></span></code></pre></div><p>✅ <strong>Key Benefits</strong>:</p>
-<ul>
-<li>No triggers or manual routing logic.</li>
-<li>PostgreSQL automatically inserts into the correct partition.</li>
-<li>Optimized query performance through <strong>pruning</strong>.</li>
-</ul>
-<hr>
-<h2 id="pros-and-cons-comparison">Pros and Cons comparison</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th>Inheritance + Trigger</th>
-          <th>Native Partitioning</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>PostgreSQL Version Support</td>
-          <td>≤ 9.6</td>
-          <td>≥ 10</td>
-      </tr>
-      <tr>
-          <td>Automatic Query Pruning</td>
-          <td>❌ No</td>
-          <td>✅ Yes</td>
-      </tr>
-      <tr>
-          <td>Insert Routing Logic</td>
-          <td>Manual via triggers</td>
-          <td>Automatic</td>
-      </tr>
-      <tr>
-          <td>Ease of Maintenance</td>
-          <td>❌ Tedious</td>
-          <td>✅ Simple</td>
-      </tr>
-      <tr>
-          <td>Custom Logic Flexibility</td>
-          <td>✅ High</td>
-          <td>❌ Limited</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h2 id="performance-benchmarks">Performance Benchmarks</h2>
-<p>In most benchmarks:</p>
-<ul>
-<li><strong>Insert Performance</strong>: Native is 20–50% faster.</li>
-<li><strong>Query Performance</strong>: Native benefits from partition pruning, scanning only the relevant partitions.</li>
-</ul>
-<hr>
-<h2 id="when-to-use-which">When to use which?</h2>
-<h3 id="-use-native-partitioning-when">✅ Use <strong>Native Partitioning</strong> when:</h3>
-<ul>
-<li>You&rsquo;re using PostgreSQL 10 or later.</li>
-<li>You prioritize performance and simplicity.</li>
-<li>Your partitioning scheme fits range/list/hash models.</li>
-</ul>
-<h3 id="-use-inheritance--trigger-when">✅ Use <strong>Inheritance + Trigger</strong> when:</h3>
-<ul>
-<li>You&rsquo;re stuck with PostgreSQL ≤ 9.6.</li>
-<li>You need custom insert logic not supported natively.</li>
-</ul>
-<hr>
-<h2 id="migrating-from-inheritance-to-native">Migrating from Inheritance to Native</h2>
-<p>When transitioning:</p>
-<ul>
-<li>Plan your schema migration carefully.</li>
-<li>Use native commands like <code>ATTACH PARTITION</code> and <code>DETACH PARTITION</code>.</li>
-<li>Test your constraints, indexes, and foreign keys.</li>
-</ul>
-<hr>
-<h2 id="conclusion">Conclusion</h2>
-<p>Both partitioning methods are valid depending on your context:</p>
-<ul>
-<li><strong>Native partitioning</strong> is ideal for modern setups — faster, simpler, and better integrated.</li>
-<li><strong>Inheritance + Trigger</strong> remains useful for legacy systems or when custom logic is essential.</li>
-</ul>
-
-        </article>
-    </div>
-
-    
-
-            </div>
-        </div><footer class="text-center pb-1">
-    <small class="text-muted">
-        
-            © 2025 by isfj.dev. All rights reserved.
-        
-        <br>
-        Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>
-        and <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
-    </small>
-</footer>
-</body>
-</html>
+<!doctype html><html lang=en-us><head><title>isfj.dev</title>
+<meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=description content><link rel=stylesheet href=../../css/theme.min.css><link rel=stylesheet href=../../css/custom.min.css></head><body><div id=content class=mx-auto><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1"><div class=row><div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4"><a href=../../ class=text-decoration-none><img id=home-image class=rounded-circle src=../../images/avatar.png></a></div><div class="col-sm-8 col-12 text-sm-left text-center"><h2 class="m-0 mb-2 mt-4"><a href=../../ class=text-decoration-none>I’m isfjdev 👋</a></h2><p class="text-muted mb-1">Software Engineer | VN</p><ul id=nav-links class="list-inline mb-2"><li class=list-inline-item><a class="badge badge-white" href=../../about/ title=About>About</a></li><li class=list-inline-item><a class="badge badge-white" href=../../posts/ title=Posts>Posts</a></li></ul><ul id=nav-social class=list-inline><li class="list-inline-item mr-3"><a href=http://github.com/isfjdev target=_blank><i class="fab fa-github fa-1x text-muted"></i></a></li><li class="list-inline-item mr-3"><a href=https://www.linkedin.com/in/isfjdev target=_blank><i class="fab fa-linkedin-in fa-1x text-muted"></i></a></li><li class="list-inline-item mr-3"><a href=https://x.com/isfjdev target=_blank><i class="fab fa-x-twitter fa-1x text-muted"></i></a></li><li class="list-inline-item mr-3"><a href=mailto:isfjdev@gmail.com target=_blank><i class="fas fa-envelope fa-1x text-muted"></i></a></li></ul></div></div><hr></header><div class=container><div class="pl-sm-4 ml-sm-5"><p>Partitioning is a powerful technique in PostgreSQL to handle large-scale datasets. It can significantly improve <strong>query performance</strong>, <strong>data maintenance</strong>, and <strong>scalability</strong>.</p><p>But which method should you choose: <strong>Native Partitioning</strong> or the older <strong>Inheritance + Trigger</strong> approach?</p><p>This article dives into both techniques, comparing their mechanics, pros and cons, and real-world applicability to help you make an informed decision.</p><hr><h2 id=what-is-partitioning-and-why-does-it-matter>What is partitioning and why does it matter?</h2><p><strong>Partitioning</strong> is the process of splitting a large table into smaller, more manageable pieces called <em>partitions</em>. Benefits include:</p><ul><li>Faster queries due to reduced I/O.</li><li>Simplified table management.</li><li>Efficient archival or deletion of old data.</li></ul><blockquote><p>Think of partitioning like organizing massive file cabinets by month — it&rsquo;s easier to locate and remove specific data chunks.</p></blockquote><hr><h2 id=historical-context-in-postgresql>Historical context in PostgreSQL</h2><p>Partitioning in PostgreSQL has evolved over time:</p><table><thead><tr><th>PostgreSQL Version</th><th>Partitioning Method</th><th>Notes</th></tr></thead><tbody><tr><td>≤ 9.6</td><td>Inheritance + Trigger</td><td>Manual, flexible but complex</td></tr><tr><td>≥ 10</td><td>Native Partitioning (built-in)</td><td>Simple, efficient, and integrated</td></tr></tbody></table><hr><h2 id=3-how-each-method-works>3. How each method works</h2><h3 id=-inheritance--trigger>🛠 Inheritance + Trigger</h3><p>This older method uses table inheritance and insert triggers.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs (
+</span></span><span style=display:flex><span>    id serial,
+</span></span><span style=display:flex><span>    log_time <span style=color:#66d9ef>timestamp</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
+</span></span><span style=display:flex><span>    log_message text
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs_2024_01 () <span style=color:#66d9ef>INHERITS</span> (logs);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs_2024_02 () <span style=color:#66d9ef>INHERITS</span> (logs);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>FUNCTION</span> logs_insert_trigger()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>RETURNS</span> <span style=color:#66d9ef>TRIGGER</span> <span style=color:#66d9ef>AS</span> <span style=color:#960050;background-color:#1e0010>$$</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>BEGIN</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>IF</span> (<span style=color:#66d9ef>NEW</span>.log_time <span style=color:#f92672>&gt;=</span> <span style=color:#e6db74>&#39;2024-01-01&#39;</span> <span style=color:#66d9ef>AND</span> <span style=color:#66d9ef>NEW</span>.log_time <span style=color:#f92672>&lt;</span> <span style=color:#e6db74>&#39;2024-02-01&#39;</span>) <span style=color:#66d9ef>THEN</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> logs_2024_01 <span style=color:#66d9ef>VALUES</span> (<span style=color:#66d9ef>NEW</span>.<span style=color:#f92672>*</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>ELSIF</span> (<span style=color:#66d9ef>NEW</span>.log_time <span style=color:#f92672>&gt;=</span> <span style=color:#e6db74>&#39;2024-02-01&#39;</span> <span style=color:#66d9ef>AND</span> <span style=color:#66d9ef>NEW</span>.log_time <span style=color:#f92672>&lt;</span> <span style=color:#e6db74>&#39;2024-03-01&#39;</span>) <span style=color:#66d9ef>THEN</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> logs_2024_02 <span style=color:#66d9ef>VALUES</span> (<span style=color:#66d9ef>NEW</span>.<span style=color:#f92672>*</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>ELSE</span>
+</span></span><span style=display:flex><span>        RAISE <span style=color:#66d9ef>EXCEPTION</span> <span style=color:#e6db74>&#39;Date out of range&#39;</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>END</span> <span style=color:#66d9ef>IF</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>RETURN</span> <span style=color:#66d9ef>NULL</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>END</span>;
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>$$</span> <span style=color:#66d9ef>LANGUAGE</span> plpgsql;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TRIGGER</span> insert_logs_trigger
+</span></span><span style=display:flex><span><span style=color:#66d9ef>BEFORE</span> <span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>ON</span> logs
+</span></span><span style=display:flex><span><span style=color:#66d9ef>FOR</span> <span style=color:#66d9ef>EACH</span> <span style=color:#66d9ef>ROW</span> <span style=color:#66d9ef>EXECUTE</span> <span style=color:#66d9ef>FUNCTION</span> logs_insert_trigger();
+</span></span></code></pre></div><p>✅ <strong>Explanation</strong>:</p><ul><li>The <code>logs</code> table is abstract and holds no data directly.</li><li>The trigger checks <code>log_time</code> and routes the row to the correct child table.</li></ul><hr><h3 id=-native-partitioning-postgresql--10>⚙ Native Partitioning (PostgreSQL ≥ 10)</h3><p>Native partitioning simplifies the setup using built-in features.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs (
+</span></span><span style=display:flex><span>    id serial,
+</span></span><span style=display:flex><span>    log_time <span style=color:#66d9ef>timestamp</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
+</span></span><span style=display:flex><span>    log_message text
+</span></span><span style=display:flex><span>) PARTITION <span style=color:#66d9ef>BY</span> RANGE (log_time);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs_2024_01 PARTITION <span style=color:#66d9ef>OF</span> logs
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>FOR</span> <span style=color:#66d9ef>VALUES</span> <span style=color:#66d9ef>FROM</span> (<span style=color:#e6db74>&#39;2024-01-01&#39;</span>) <span style=color:#66d9ef>TO</span> (<span style=color:#e6db74>&#39;2024-02-01&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> logs_2024_02 PARTITION <span style=color:#66d9ef>OF</span> logs
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>FOR</span> <span style=color:#66d9ef>VALUES</span> <span style=color:#66d9ef>FROM</span> (<span style=color:#e6db74>&#39;2024-02-01&#39;</span>) <span style=color:#66d9ef>TO</span> (<span style=color:#e6db74>&#39;2024-03-01&#39;</span>);
+</span></span></code></pre></div><p>✅ <strong>Key Benefits</strong>:</p><ul><li>No triggers or manual routing logic.</li><li>PostgreSQL automatically inserts into the correct partition.</li><li>Optimized query performance through <strong>pruning</strong>.</li></ul><hr><h2 id=pros-and-cons-comparison>Pros and Cons comparison</h2><table><thead><tr><th>Feature</th><th>Inheritance + Trigger</th><th>Native Partitioning</th></tr></thead><tbody><tr><td>PostgreSQL Version Support</td><td>≤ 9.6</td><td>≥ 10</td></tr><tr><td>Automatic Query Pruning</td><td>❌ No</td><td>✅ Yes</td></tr><tr><td>Insert Routing Logic</td><td>Manual via triggers</td><td>Automatic</td></tr><tr><td>Ease of Maintenance</td><td>❌ Tedious</td><td>✅ Simple</td></tr><tr><td>Custom Logic Flexibility</td><td>✅ High</td><td>❌ Limited</td></tr></tbody></table><hr><h2 id=performance-benchmarks>Performance Benchmarks</h2><p>In most benchmarks:</p><ul><li><strong>Insert Performance</strong>: Native is 20–50% faster.</li><li><strong>Query Performance</strong>: Native benefits from partition pruning, scanning only the relevant partitions.</li></ul><hr><h2 id=when-to-use-which>When to use which?</h2><h3 id=-use-native-partitioning-when>✅ Use <strong>Native Partitioning</strong> when:</h3><ul><li>You&rsquo;re using PostgreSQL 10 or later.</li><li>You prioritize performance and simplicity.</li><li>Your partitioning scheme fits range/list/hash models.</li></ul><h3 id=-use-inheritance--trigger-when>✅ Use <strong>Inheritance + Trigger</strong> when:</h3><ul><li>You&rsquo;re stuck with PostgreSQL ≤ 9.6.</li><li>You need custom insert logic not supported natively.</li></ul><hr><h2 id=migrating-from-inheritance-to-native>Migrating from Inheritance to Native</h2><p>When transitioning:</p><ul><li>Plan your schema migration carefully.</li><li>Use native commands like <code>ATTACH PARTITION</code> and <code>DETACH PARTITION</code>.</li><li>Test your constraints, indexes, and foreign keys.</li></ul><hr><h2 id=conclusion>Conclusion</h2><p>Both partitioning methods are valid depending on your context:</p><ul><li><strong>Native partitioning</strong> is ideal for modern setups — faster, simpler, and better integrated.</li><li><strong>Inheritance + Trigger</strong> remains useful for legacy systems or when custom logic is essential.</li></ul></div></div></div><footer class="text-center pb-1"><small class=text-muted>© 2025 by isfj.dev. All rights reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank>Hugo</a>
+and <a href=https://github.com/austingebauer/devise target=_blank>Devise</a></small></footer></body></html>

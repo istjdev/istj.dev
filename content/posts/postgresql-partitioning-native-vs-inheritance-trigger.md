@@ -1,6 +1,6 @@
 +++
 date = '2025-04-29T07:16:22+07:00'
-draft = true
+draft = false
 title = 'PostgreSQL Partitioning: Native vs Inheritance + Trigger'
 tags = ["PostgreSQL", "Partitioning", "Database"]
 categories = ["Database"]

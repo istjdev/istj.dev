@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project Management on istj.dev</title>
+    <link>http://localhost:1313/tags/project-management/</link>
+    <description>Recent content in Project Management on istj.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>© 2025 by istj.dev. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 09 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/project-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>9 Kỹ Thuật Phân Tích &#39;Thần Thánh&#39; Mà Dân Làm Dự Án Không Thể Bỏ Lỡ</title>
+      <link>http://localhost:1313/posts/9-project-analysis-techniques/</link>
+      <pubDate>Sat, 09 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/9-project-analysis-techniques/</guid>
+      <description>&lt;p&gt;Ê ê ê! Các đồng chí coder, các sếp PO, các anh chị em làm dự án ơi! Hôm nay, chúng ta không bàn chuyện lương thưởng hay deadline cháy nhà nữa (dù đó là chủ đề muôn thuở). Hôm nay, tôi muốn tám một chút về mấy cái vũ khí bí mật mà dân làm dự án pro hay thủ thỉ nhau để biến những mớ bòng bong thành những viên kim cương lấp lánh. Nghe có vẻ hơi triết lý, nhưng tin tôi đi, nó cuốn hơn cả drama Hàn Quốc đấy!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

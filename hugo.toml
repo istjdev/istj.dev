@@ -1,12 +1,12 @@
-baseURL = "https://isfj.dev"
-title = "isfj.dev"
+baseURL = "https://istj.dev"
+title = "istj.dev"
 languageCode = "en-us"
 theme = "devise"
 relativeURLs = true
 enableEmoji = true
 googleAnalytics = ""
 enableRobotsTXT = true
-copyright = "© 2025 by isfj.dev. All rights reserved."
+copyright = "© 2025 by istj.dev. All rights reserved."
 
 # Main menu items
 [menu]
@@ -26,7 +26,7 @@ copyright = "© 2025 by isfj.dev. All rights reserved."
 # Configuration Features
 [params]
   description = "Software Engineer"
-  header_title = "I’m isfjdev 👋"
+  header_title = "I’m istjdev 👋"
   header_subtitle = "Software Engineer | VN"
   home_image = "/images/avatar.png"
   recent_posts = 5
@@ -38,13 +38,13 @@ copyright = "© 2025 by isfj.dev. All rights reserved."
     fontColor = "#212529"
   [[params.social]]
     fa_icon = "fab fa-github fa-1x"
-    href = "http://github.com/isfjdev"
+    href = "http://github.com/istjdev"
   [[params.social]]
     fa_icon = "fab fa-linkedin-in fa-1x"
-    href = "https://www.linkedin.com/in/isfjdev"
+    href = "https://www.linkedin.com/in/istjdev"
   [[params.social]]
     fa_icon = "fab fa-x-twitter fa-1x"
-    href = "https://x.com/isfjdev"
+    href = "https://x.com/istjdev"
 [[params.social]]
     fa_icon = "fas fa-envelope fa-1x"
-    href = "mailto:isfjdev@gmail.com"
+    href = "mailto:istjdev@gmail.com"

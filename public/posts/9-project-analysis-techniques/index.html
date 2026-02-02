@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>istj.dev</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+
+    
+    
+    
+    <link rel="stylesheet" href="../../css/theme.min.css">
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="../../css/custom.min.css">
+    
+
+    
+</head>
+<body>
+        <div id="content" class="mx-auto"><header class="container mt-sm-5 mt-4 mb-4 mt-xs-1">
+    <div class="row">
+        
+        <div class="col-sm-4 col-12 text-sm-right text-center pt-sm-4">
+            <a href="../../" class="text-decoration-none">
+                <img id="home-image" class="rounded-circle"
+                    
+                        
+                            src="../../images/avatar.png"
+                        
+                    
+                />
+            </a>
+        </div>
+        <div class="col-sm-8 col-12 text-sm-left text-center">
+        
+            <h2 class="m-0 mb-2 mt-4">
+                <a href="../../" class="text-decoration-none">
+                    
+                        I’m istjdev 👋
+                    
+                </a>
+            </h2>
+            <p class="text-muted mb-1">
+                
+                    Software Engineer | VN
+                
+            </p>
+            <ul id="nav-links" class="list-inline mb-2">
+                
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../about/" title="About">About</a>
+                    </li>
+                
+                    <li class="list-inline-item">
+                        <a class="badge badge-white " href="../../posts/" title="Posts">Posts</a>
+                    </li>
+                
+            </ul>
+            <ul id="nav-social" class="list-inline">
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="http://github.com/istjdev" target="_blank">
+                            <i class="fab fa-github fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="https://www.linkedin.com/in/istjdev" target="_blank">
+                            <i class="fab fa-linkedin-in fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="https://x.com/istjdev" target="_blank">
+                            <i class="fab fa-x-twitter fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+                    <li class="list-inline-item mr-3">
+                        <a href="mailto:istjdev@gmail.com" target="_blank">
+                            <i class="fas fa-envelope fa-1x text-muted"></i>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+    <hr />
+</header>
+<div class="container">
+    <div class="pl-sm-4 ml-sm-5">
+        <p>Ê ê ê! Các đồng chí coder, các sếp PO, các anh chị em làm dự án ơi! Hôm nay, chúng ta không bàn chuyện lương thưởng hay deadline cháy nhà nữa (dù đó là chủ đề muôn thuở). Hôm nay, tôi muốn tám một chút về mấy cái vũ khí bí mật mà dân làm dự án pro hay thủ thỉ nhau để biến những mớ bòng bong thành những viên kim cương lấp lánh. Nghe có vẻ hơi triết lý, nhưng tin tôi đi, nó cuốn hơn cả drama Hàn Quốc đấy!</p>
+<p>Chúng ta sẽ cùng nhau mổ xẻ 9 kỹ thuật phân tích thần thánh mà nếu bạn bỏ qua, thì chẳng khác nào đi quẩy mà quên mang theo đồ nghề cả. Yên tâm, tôi sẽ cố gắng chém gió một cách hài hước, gần gũi, nhưng vẫn đảm bảo độ sâu để các bạn ngấm được hết vitamin nhé! Bắt đầu thôi nào!</p>
+<h2 id="1-năm-lần-bảy-lượt-anh-hỏi-vì-sao---five-whys-deep-dive">1. Năm lần bảy lượt anh hỏi vì sao - Five Whys Deep Dive</h2>
+<p>Nghe cái tên thôi đã thấy cắc cớ rồi đúng không? Năm lần bảy lượt anh hỏi vì sao – nghe cứ như đang cãi nhau với người yêu ấy nhỉ? Nhưng thực tế, đây là một kỹ thuật siêu đơn giản mà lại cực kỳ hiệu quả để bới lông tìm vết, à nhầm, tìm ra nguyên nhân gốc rễ của mọi vấn đề.</p>
+<p><strong>Chuyện kể rằng:</strong> Có một cái máy in cứ giở chứng không in được. Thay vì đổ tại số nhọ, người ta kiên nhẫn hỏi:</p>
+<ul>
+<li><strong>Tại sao máy không in?</strong> – Vì giấy bị kẹt.</li>
+<li><strong>Tại sao giấy bị kẹt?</strong> – Vì có một mẩu giấy vụn bên trong.</li>
+<li><strong>Tại sao lại có mẩu giấy vụn?</strong> – Vì người dùng trước đó đã cố gắng kéo một tờ giấy bị rách ra.</li>
+<li><strong>Tại sao giấy lại bị rách?</strong> – Vì khay giấy bị cong.</li>
+<li><strong>Tại sao khay giấy lại bị cong?</strong> – Vì nó đã cũ và không được bảo trì thường xuyên.</li>
+</ul>
+<p><strong>À há! khoảnh khắc:</strong> Thấy chưa? Thay vì chỉ đổ lỗi cho người dùng hay cái máy cùi bắp, chúng ta đã lần mò ra được vấn đề sâu xa hơn là quy trình bảo trì chưa tốt. Áp dụng vào dự án cũng vậy, đừng vội vàng kết luận khi gặp lỗi, hãy cứ xoáy đến khi nào chạm được tổ mối thì thôi!</p>
+<h2 id="2-anh-em-ta-cùng-nhau-tám---stakeholder-roundtable">2. Anh Em Ta Cùng Nhau Tám - Stakeholder Roundtable</h2>
+<p>Dự án không phải là chuyện riêng của team mình. Xung quanh chúng ta là cả một hội nghị bàn tròn các bên liên quan (stakeholders) với đủ loại hỷ nộ ái ố và những nỗi đau (pain points) riêng. Việc của chúng ta là phải bắt sóng được hết tần số của họ.</p>
+<p>Tưởng tượng mà xem: Anh sếp thì quan tâm đến doanh thu, chị marketing thì lo lắng về độ phủ sóng, còn bác kỹ thuật thì đau đầu về hiệu năng. Nếu không mời tất cả vào bàn tròn để cùng nhau tám cho ra lẽ, thì dự án dễ đi lệch quỹ đạo lắm đó!</p>
+<p><strong>Bí kíp bỏ túi:</strong> Hãy lập danh sách tất cả những ai có liên quan (dù thích hay không thích dự án của bạn). Sau đó, triệu tập họ lại (có thể là họp mặt trực tiếp hoặc online) để lắng nghe những trăn trở, mong muốn của họ. Hiểu được tim đen của từng người rồi, bạn sẽ biết cách điều phối cho dự án về đích một cách êm đẹp.</p>
+<h2 id="3-nếu-như-thì-sao---what-if-scenarios">3. Nếu Như&hellip; Thì Sao? - What If Scenarios</h2>
+<p>Đời không như là mơ, dự án cũng vậy. Đừng chỉ vẽ ra một con đường màu hồng trải đầy hoa, hãy nghĩ đến cả những ổ gà, hố voi có thể xuất hiện bất ngờ. Kỹ thuật What If Scenarios chính là chiếc radar để chúng ta dò trước những tình huống éo le đó.</p>
+<p>Ví dụ nhẹ nhàng:</p>
+<ul>
+<li>Nếu như server bị sập vào đúng ngày Black Friday thì sao?</li>
+<li>Nếu như đối thủ tung ra một tính năng ăn đứt của mình thì sao?</li>
+<li>Nếu như team mình có người rơi rụng vì&hellip; lý do cá nhân thì sao?</li>
+</ul>
+<p><strong>Chuẩn bị sẵn sàng:</strong> Với mỗi câu hỏi nếu như đó, hãy vắt óc nghĩ ra những phương án đối phó. Có plan B, plan C trong tay thì dù bão táp mưa sa, dự án của bạn vẫn cứ hiên ngang tiến về phía trước.</p>
+<h2 id="4-về-với-cát-bụi-first-principles-thinking">4. Về Với Cát Bụi: First Principles Thinking</h2>
+<p>Trong thế giới công nghệ thay áo nhanh hơn cả người yêu cũ đổi trạng thái trên Facebook, đôi khi chúng ta bị lạc lối trong những trend nhất thời. First Principles Thinking kéo chúng ta trở về với những chân lý cơ bản nhất, giúp chúng ta xây dựng giải pháp từ gốc rễ.</p>
+<p><strong>Elon Musk đã chơi lớn thế nào:</strong> Khi nghĩ về việc làm tên lửa, thay vì nhìn vào giá trên trời của các công ty khác, anh ấy đã tự hỏi: Tên lửa được làm từ cái gì?. Câu trả lời là nhôm, titan, carbon fiber&hellip; Sau đó, anh ấy tìm cách mua những nguyên liệu thô này với giá gốc và tự sản xuất. Kết quả? SpaceX ra đời với chi phí phóng tên lửa rẻ hơn nhiều so với đối thủ.</p>
+<p><strong>Đừng tin vào lời đồn:</strong> Hãy luôn đặt câu hỏi tại sao đến tận cùng, bóc tách mọi thứ ra thành những thành phần cơ bản nhất. Khi bạn hiểu rõ cốt lõi của vấn đề, bạn sẽ có thể tạo ra những giải pháp độc đáo và bền vững, thay vì chỉ copy-paste những gì người khác đang làm.</p>
+<h2 id="5-lật-mặt-cái-bàn-assumption-reversal">5. Lật Mặt Cái Bàn: Assumption Reversal</h2>
+<p>Bộ não của chúng ta hay đi theo lối mòn, chấp nhận những giả định mà không hề nghi ngờ. Kỹ thuật Assumption Reversal giống như việc lật mặt cái bàn, buộc chúng ta phải nhìn nhận vấn đề từ một góc độ hoàn toàn khác.</p>
+<p><strong>Thử quái chiêu một chút:</strong> Giả sử bạn đang thiết kế một ứng dụng hẹn hò. Giả định thông thường là người dùng muốn tìm kiếm đối tượng phù hợp. Hãy thử đảo ngược: Người dùng không muốn tìm kiếm ai cả!. Từ giả định ngược đời này, bạn có thể nảy ra những ý tưởng điên rồ như một ứng dụng&hellip; chống hẹn hò, nơi mọi người chỉ đơn giản là kết bạn và chill cùng nhau mà không có bất kỳ áp lực tìm kiếm nào. Biết đâu nó lại thành công thì sao?</p>
+<p><strong>Táo bạo lên:</strong> Đừng ngại ngần thách thức những luật bất thành văn. Đôi khi, những ý tưởng điên rồ nhất lại là những phát kiến vĩ đại nhất.</p>
+<h2 id="6-du-hành-vượt-thời-gian-time-shifting-analysis">6. Du Hành Vượt Thời Gian: Time Shifting Analysis</h2>
+<p>Dự án hôm nay ngon lành chưa chắc ngày mai đã ổn áp. Thế giới thay đổi, nhu cầu người dùng tiến hóa, công nghệ thì lên đời từng ngày. Time Shifting Analysis giúp chúng ta du hành đến tương lai để xem xét liệu giải pháp hiện tại có còn xài được không.</p>
+<p><strong>Nhìn xa trông rộng:</strong> Hãy tự hỏi:</p>
+<ul>
+<li>Liệu hệ thống của mình có chịu được tải khi số lượng người dùng tăng gấp 10, gấp 100 lần không?</li>
+<li>Những công nghệ nào có thể &ldquo;soán ngôi&rdquo; công nghệ mình đang dùng trong 5 năm tới?</li>
+<li>Những yêu cầu nào của người dùng có thể thay đổi khi thị trường phát triển?</li>
+</ul>
+<p><strong>Đầu tư cho tương lai:</strong> Việc dự đoán tương lai là bất khả thi, nhưng chúng ta có thể xây dựng một kiến trúc linh hoạt, dễ dàng mở rộng và thay đổi để sống sót qua những biến động của thời gian.</p>
+<h2 id="7-liệu-cơm-gắp-mắm-resource-constraints-exploration">7. Liệu Cơm Gắp Mắm: Resource Constraints Exploration</h2>
+<p>Tiền bạc, thời gian, nhân lực&hellip; không bao giờ là vô hạn. Resource Constraints Exploration nhắc nhở chúng ta phải thực tế, liệu cơm gắp mắm, ưu tiên những việc quan trọng nhất với nguồn lực hạn chế.</p>
+<p><strong>Chọn cá hay chọn cần câu:</strong> Đôi khi, chúng ta phải đưa ra những quyết định khó khăn: tập trung vào một vài tính năng cốt lõi để ra mắt nhanh chóng (MVP) hay cố gắng nhồi nhét quá nhiều thứ vào một lúc rồi chết chìm? Các khung ưu tiên như MoSCoW (Must have, Should have, Could have, Won&rsquo;t have) sẽ là phao cứu sinh cho bạn trong những tình huống này.</p>
+<p><strong>Thông minh mà tiết kiệm:</strong> Hãy tìm ra cách hiệu quả nhất để đạt được mục tiêu với nguồn lực ít nhất. Đừng ngại tái chế những gì đã có, tận dụng các công cụ và dịch vụ sẵn có.</p>
+<h2 id="8-nhập-vai-siêu-đỉnh-role-playing-perspectives">8. Nhập Vai Siêu Đỉnh: Role Playing Perspectives</h2>
+<p>Bạn đã bao giờ thử hóa thân thành người dùng khó tính nhất, thành anh chàng bảo mật soi mói nhất, hay thành cô nàng marketing mộng mơ nhất chưa? Role Playing Perspectives chính là cơ hội để bạn nhập vai và nhìn nhận dự án từ những góc độ khác nhau.</p>
+<p><strong>Đa nhân cách có lợi:</strong> Khi bạn thử suy nghĩ như một người dùng cuối, bạn sẽ nhận ra những bất tiện trong giao diện. Khi bạn đặt mình vào vị trí của một hacker, bạn sẽ phát hiện ra những lỗ hổng bảo mật tiềm ẩn. Sự đa nhân cách này sẽ giúp bạn có một cái nhìn toàn diện hơn về dự án.</p>
+<p><strong>Nghe tiếng nói từ bên trong:</strong> Hãy tổ chức những buổi role playing vui vẻ trong team. Mỗi người sẽ đóng một vai khác nhau và cùng nhau mổ xẻ dự án. Bạn sẽ ngạc nhiên về những insight bất ngờ mà mình thu được đấy!</p>
+<h2 id="9-điểm-danh-các-ca-khó---risk-assessment-deep-dive">9. Điểm danh các ca khó - Risk Assessment Deep Dive</h2>
+<p>Rủi ro luôn rình rập như crush cũ lướt story của bạn. Risk Assessment Deep Dive giúp chúng ta điểm danh tất cả những ca khó có thể xảy ra và lên kế hoạch đối phó.</p>
+<p><strong>Liệt kê không thiếu một ai:</strong> Hãy brainstorm tất cả những rủi ro có thể ảnh hưởng đến dự án (rủi ro kỹ thuật, rủi ro về tiến độ, rủi ro về thị trường&hellip;). Sau đó, đánh giá mức độ nghiêm trọng và khả năng xảy ra của từng rủi ro để ưu tiên xử lý những &ldquo;ca&rdquo; nguy hiểm nhất.</p>
+<p><strong>Phòng bệnh hơn chữa bệnh:</strong> Với mỗi rủi ro đã được xác định, hãy nghĩ ra những biện pháp phòng ngừa hoặc giảm thiểu tác động của nó. Chuẩn bị sẵn &ldquo;áo mưa&rdquo; thì dù trời có đổ &ldquo;mưa rào&rdquo;, bạn vẫn cứ &ldquo;ung dung&rdquo; mà tiến bước.</p>
+<hr>
+<h3 id="lời-kết-tám-xàm-mà-đầy-chất">Lời Kết Tám Xàm Mà Đầy Chất:</h3>
+<p>Vậy đó, chúng ta vừa tám xong 9 kỹ thuật phân tích xịn sò mà dân làm dự án có nghề thường xuyên bỏ túi. Nghe có vẻ cao siêu, nhưng thực ra chúng đều rất gần gũi và dễ áp dụng nếu bạn chịu khó mở lòng và lắng nghe.</p>
+<p>Hãy nhớ rằng, dự án thành công không chỉ nhờ vào những dòng code mượt mà hay những bản thiết kế lung linh, mà còn nằm ở khả năng chúng ta hiểu rõ vấn đề, thấu hiểu những người liên quan, và lường trước mọi tình huống.</p>
+<p>Chúc các bạn luôn chinh chiến thành công trên mọi mặt trận dự án nhé! Nếu thấy bài tám này có ích, đừng ngại share cho đồng nghiệp cùng ngâm cứu nha! 😉</p>
+
+    </div>
+
+    
+
+            </div>
+        </div><footer class="text-center pb-1">
+    <small class="text-muted">
+        
+            © 2025 by istj.dev. All rights reserved.
+        
+        <br>
+        Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a>
+        and <a href="https://github.com/austingebauer/devise" target="_blank">Devise</a>
+    </small>
+</footer>
+</body>
+</html>

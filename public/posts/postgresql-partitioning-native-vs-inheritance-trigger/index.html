@@ -92,15 +92,8 @@
     <hr />
 </header>
 <div class="container">
-    <div class="pl-sm-2">
-        <div class="mb-3">
-            <h3 class="mb-0">PostgreSQL Partitioning: Native vs Inheritance &#43; Trigger</h3>
-            
-            <small class="text-muted">Published April 29, 2025</small>
-        </div>
-
-        <article>
-            <p>Partitioning is a powerful technique in PostgreSQL for managing large datasets. It can significantly enhance <strong>query performance</strong>, <strong>data management</strong>, and <strong>scalability</strong>.</p>
+    <div class="pl-sm-4 ml-sm-5">
+        <p>Partitioning is a powerful technique in PostgreSQL for managing large datasets. It can significantly enhance <strong>query performance</strong>, <strong>data management</strong>, and <strong>scalability</strong>.</p>
 <p>But which method should you choose: <strong>Native Partitioning</strong> or the older <strong>Inheritance + Trigger</strong> approach?</p>
 <p>This article will analyze both techniques, compare their mechanisms, pros and cons, and practical applications to help you make an informed decision.</p>
 <hr>
@@ -112,7 +105,8 @@
 <li>Efficient storage or deletion of old data.</li>
 </ul>
 <blockquote>
-<p>Think of partitioning as organizing a massive filing cabinet by month — it’s much easier to find and remove specific sections of data.</p></blockquote>
+<p>Think of partitioning as organizing a massive filing cabinet by month — it’s much easier to find and remove specific sections of data.</p>
+</blockquote>
 <hr>
 <h2 id="historical-context-in-postgresql">Historical Context in PostgreSQL</h2>
 <p>Partitioning in PostgreSQL has evolved over time:</p>
@@ -141,7 +135,7 @@
 <h2 id="how-each-method-works">How Each Method Works</h2>
 <h3 id="-inheritance--trigger">🛠 Inheritance + Trigger</h3>
 <p>This older method uses table inheritance and triggers to route data.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
 </span></span><span style="display:flex;"><span>    id serial,
 </span></span><span style="display:flex;"><span>    log_time <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
 </span></span><span style="display:flex;"><span>    log_message text
@@ -175,7 +169,7 @@
 <hr>
 <h3 id="-native-partitioning-postgresql--10">⚙ Native Partitioning (PostgreSQL ≥ 10)</h3>
 <p>Native Partitioning simplifies the setup using built-in features.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> logs (
 </span></span><span style="display:flex;"><span>    id serial,
 </span></span><span style="display:flex;"><span>    log_time <span style="color:#66d9ef">timestamp</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
 </span></span><span style="display:flex;"><span>    log_message text
@@ -266,7 +260,6 @@
 <li><strong>Inheritance + Trigger</strong> remains useful for legacy systems or when custom logic is required.</li>
 </ul>
 
-        </article>
     </div>
 
     

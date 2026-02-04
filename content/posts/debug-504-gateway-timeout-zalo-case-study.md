@@ -63,11 +63,73 @@ Tưởng đời nở hoa, ai ngờ **bế tắc tập 2**: Zalo xử lý xong, n
 
 Để tránh bị "bóng chuyền trách nhiệm", anh em cần làm gì?
 
-1.  **Show cái sơ đồ này cho đối tác:** Đôi khi một hình ảnh bằng ngàn lời nói. Chỉ cho họ thấy điểm Drop packet nằm ở lớp Network/LB chứ không phải App.
-2.  **Dùng "Kính chiếu yêu" TCPDump:**
-    Bắt gói tin ngay tại server mình. Nếu thấy request đi mà không thấy response về (hoặc thấy response về nhưng toàn bị Retransmission đỏ lòm) => Bằng chứng thép.
-3.  **Ép MSS/MTU bằng `iptables`:**
-    Đừng chỉ config trong code, hãy config ngay tầng OS để ép đầu bên kia phải "nhập gia tùy tục", chia nhỏ gói tin ngay từ lúc bắt tay (Handshake).
+### 1. Show cái sơ đồ này cho đối tác
+
+Đôi khi một hình ảnh bằng ngàn lời nói. Chỉ cho họ thấy điểm Drop packet nằm ở lớp Network/LB chứ không phải App.
+
+**Lý tưởng nhất** là đội Zalo sẽ fix ở phía họ bằng cách:
+* Tắt DF flag hoặc config Path MTU Discovery (PMTUD) đúng cách
+* Giảm response size hoặc enable compression
+* Config MSS Clamping ngay tại Load Balancer của họ
+
+Nhưng thực tế đời không như là mơ...
+
+### 2. Dùng "Kính chiếu yêu" TCPDump - Bằng chứng thép
+
+Bắt gói tin ngay tại server mình. Nếu thấy request đi mà không thấy response về (hoặc thấy response về nhưng toàn bị Retransmission đỏ lòm) => Bằng chứng không thể chối cãi.
+
+```bash
+# Bắt packet với Zalo (thay <ZALO_IP> bằng IP thực tế)
+tcpdump -i eth0 -w zalo-debug.pcap host <ZALO_IP> and port 443
+
+# Sau khi có file .pcap, mở bằng Wireshark và filter:
+tcp.analysis.retransmission || tcp.analysis.lost_segment
+```
+
+Cái này quan trọng để **chứng minh với sếp** rằng không phải do code mình viết tệ, mà là vấn đề network thực sự. Screenshot gửi kèm email cho Zalo là xong!
+
+### 3. Khi Zalo "đá bóng" - Tự lực cánh sinh bằng iptables
+
+Đây là trường hợp **90% anh em sẽ gặp**: Zalo không fix, hoặc fix mãi không xong (vài tuần/tháng), mà sếp đang hối deadline. Phải tự cứu lấy mình thôi!
+
+#### Solution A: Ép MSS ngay từ lúc bắt tay TCP
+
+Khi TCP handshake (SYN-SYNACK-ACK), hai bên sẽ "thương lượng" MSS. Nếu mình advertise MSS thấp, Zalo **bắt buộc** phải tuân theo!
+
+```bash
+# Ép MSS cho traffic ĐẾN Zalo (POSTROUTING)
+iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN \
+  -d <ZALO_IP_RANGE> -j TCPMSS --set-mss 1300
+
+# Ép MSS cho traffic TỪ Zalo về (PREROUTING)
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags SYN,RST SYN \
+  -s <ZALO_IP_RANGE> -j TCPMSS --clamp-mss-to-pmtu
+```
+
+**Giải thích:**
+* `--set-mss 1300`: Cứng rắn, bắt MSS = 1300 bytes (an toàn cho hầu hết VPN)
+* `--clamp-mss-to-pmtu`: Tự động điều chỉnh MSS theo MTU của path (linh hoạt hơn)
+
+**Tips:** Dùng `1300` thay vì `1350` nếu đi qua VPN/IPsec vì còn phải trừ overhead của VPN header nữa!
+
+#### Solution B: Giảm MTU của interface (hardcore hơn)
+
+```bash
+# Temporary (mất khi reboot)
+ip link set dev eth0 mtu 1400
+
+# Permanent - thêm vào /etc/network/interfaces:
+# iface eth0 inet static
+#   ...
+#   mtu 1400
+
+# Hoặc với netplan (Ubuntu 18.04+) trong /etc/netplan/*.yaml:
+# ethernets:
+#   eth0:
+#     mtu: 1400
+```
+
+**⚠️ Lưu ý:** Cách này ảnh hưởng **TẤT CẢ** traffic qua interface đó. Chỉ nên dùng nếu server chỉ giao tiếp với Zalo, hoặc toàn bộ mạng của bạn đều có MTU thấp.
 
 ## Túm cái váy lại
 
@@ -76,7 +138,7 @@ Mình nhắn tin (Request), bên kia đã xem và soạn tin (Processing), nhưn
 
 Cuối cùng, lỗi tại thằng **Shipper** (Network)! 😂
 
-Chúc anh em debug vui vẻ và nhớ check MTU trước khi check code nhé!
+Chúc anh em debug vui vẻ và nhớ: **Check MTU trước khi check code!** 🚀
 
 ---
 *P/S: Blog này được viết trong lúc đang chờ `tcpdump` chạy.* ☕️

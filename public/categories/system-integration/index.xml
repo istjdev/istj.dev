@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>System Integration on isfj.dev</title>
-    <link>https://isfj.dev/categories/system-integration/</link>
-    <description>Recent content in System Integration on isfj.dev</description>
+    <title>System Integration on istj.dev</title>
+    <link>https://istj.dev/categories/system-integration/</link>
+    <description>Recent content in System Integration on istj.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <copyright>© 2025 by isfj.dev. All rights reserved.</copyright>
+    <copyright>© 2025 by istj.dev. All rights reserved.</copyright>
     <lastBuildDate>Mon, 02 Feb 2026 11:00:00 +0700</lastBuildDate>
-    <atom:link href="https://isfj.dev/categories/system-integration/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://istj.dev/categories/system-integration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chuyện tâm linh ngành Dev: Khi Server Zalo báo &#39;Phi như ngựa&#39; nhưng Client lại ăn... 504 Timeout 🤡</title>
-      <link>https://isfj.dev/posts/debug-504-gateway-timeout-zalo-case-study/</link>
+      <link>https://istj.dev/posts/debug-504-gateway-timeout-zalo-case-study/</link>
       <pubDate>Mon, 02 Feb 2026 11:00:00 +0700</pubDate>
-      <guid>https://isfj.dev/posts/debug-504-gateway-timeout-zalo-case-study/</guid>
+      <guid>https://istj.dev/posts/debug-504-gateway-timeout-zalo-case-study/</guid>
       <description>&lt;p&gt;Chào các đồng code,&lt;/p&gt;&#xA;&lt;p&gt;Hôm nay tôi xin phép kể lại một case debug &amp;ldquo;ảo ma Canada&amp;rdquo; mà tôi vừa trải qua với đội Zalo. Câu chuyện mang tên: &lt;strong&gt;&amp;ldquo;Ông nói gà, bà nói vịt&amp;rdquo;&lt;/strong&gt; hay còn gọi là &lt;strong&gt;&amp;ldquo;Bí ẩn chiếc gói tin mất tích&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Anh em làm tích hợp (Integration) chắc không lạ gì cảnh: Bên mình gọi API lỗi tùm lum, nhưng bên đối tác thì chìa ra cái biểu đồ xanh mướt và phán một câu xanh rờn: &lt;em&gt;&amp;ldquo;Bên anh vẫn mượt nhé chú em!&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
